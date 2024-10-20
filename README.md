@@ -54,54 +54,54 @@ The main folders and files in this project include:
 
 ## Tasks Completed
 
-### Task 1: User Interface Changes (10 Marks)
-- Changed the "Delete" button label to "Delete Contact" (2 Marks).
-- Changed the "Add" button label in the phone component to include the contact’s name (3 Marks).
-- Replaced the "Name" input with a drop-down menu with four categories (3 Marks).
-- In the `<tr>` element of the table, changed the label "Name" to "Phone Type" (2 Marks).
+### Task 1: User Interface Changes 
+- Changed the "Delete" button label to "Delete Contact" .
+- Changed the "Add" button label in the phone component to include the contact’s name .
+- Replaced the "Name" input with a drop-down menu with four categories .
+- In the `<tr>` element of the table, changed the label "Name" to "Phone Type" .
 
 ---
 
-### Task 2: API Command Demonstrations (8 Marks)
+### Task 2: API Command Demonstrations 
 The following API commands were tested:
 
-1. **Show Contact** (`GET /contacts`): Displays a list of contacts (1 Mark).
-2. **Add Contact** (`POST /contacts`): Adds a new contact to the database (1 Mark).
-3. **Delete Contact** (`DELETE /contacts/:contactId`): Deletes a contact by ID (1 Mark).
-4. **Update Contact** (`PUT /contacts/:contactId`): Updates a contact’s details (1 Mark).
-5. **Show Phone** (`GET /contacts/:contactId/phones`): Retrieves phone numbers for a contact (1 Mark).
-6. **Add Phone** (`POST /contacts/:contactId/phones`): Adds a new phone number (1 Mark).
-7. **Delete Phone** (`DELETE /contacts/:contactId/phones/:phoneId`): Deletes a phone by ID (1 Mark).
-8. **Update Phone** (`PUT /contacts/:contactId/phones/:phoneId`): Updates a phone’s details (1 Mark).
+1. **Show Contact** (`GET /contacts`): Displays a list of contacts .
+2. **Add Contact** (`POST /contacts`): Adds a new contact to the database .
+3. **Delete Contact** (`DELETE /contacts/:contactId`): Deletes a contact by ID .
+4. **Update Contact** (`PUT /contacts/:contactId`): Updates a contact’s details .
+5. **Show Phone** (`GET /contacts/:contactId/phones`): Retrieves phone numbers for a contact .
+6. **Add Phone** (`POST /contacts/:contactId/phones`): Adds a new phone number .
+7. **Delete Phone** (`DELETE /contacts/:contactId/phones/:phoneId`): Deletes a phone by ID .
+8. **Update Phone** (`PUT /contacts/:contactId/phones/:phoneId`): Updates a phone’s details .
 
 ---
 
-### Task 3: Database Modelling with Sequelize (22 Marks)
+### Task 3: Database Modelling with Sequelize 
 
-1. **Modify the `contacts` Table (5 Marks)**:
+1. **Modify the `contacts` Table **:
    - Updated the `contacts` table to include `id`, `name`, and `address`.
 
-2. **Modify the `phones` Table (5 Marks)**:
+2. **Modify the `phones` Table **:
    - Updated the `phones` table to include `id`, `phone_type`, `phone_number`, and `contactId`.
 
-3. **Adjust the Front-End (4 Marks)**:
+3. **Adjust the Front-End **:
    - Modified the front-end to reflect the updated backend structure, ensuring that the UI aligns with the changes made to the `contacts` and `phones` tables.
 
-4. **Test All APIs (8 Marks)**:
+4. **Test All APIs **:
    - Tested all APIs (POST, GET, PUT, DELETE) for the modified `contacts` and `phones` tables.
 
 ---
 
-### Task 4: Expanding the Existing Tables (30 Marks)
+### Task 4: Expanding the Existing Tables 
 
-1. **Table Creation (18 Marks)**:
+1. **Table Creation **:
    - Created a new `companies` table with the following attributes:
      - `company_id`: Primary key for each company.
      - `company_name`: Name of the company.
      - `company_address`: Address of the company.
      - `contact_id`: Foreign key referencing the `contacts` table.
 
-2. **API Creation (12 Marks)**:
+2. **API Creation **:
    - Developed the following API commands to manage the `companies` table:
      - **Create Company** (`POST /companies`): Adds a new company.
      - **Get Company** (`GET /companies/:companyId`): Retrieves a specific company by ID.
@@ -110,7 +110,7 @@ The following API commands were tested:
 
 ---
 
-### Task 5: Front-End for Companies Table (30 Marks)
+### Task 5: Front-End for Companies Table 
 
 - Created a React-based front-end interface for managing the `companies` table.
 - The front-end includes the ability to:
@@ -122,7 +122,7 @@ The following API commands were tested:
 
 ---
 
-### Task 6: Bonus Application (20 Marks)
+### Task 6: Bonus Application 
 
 1. **Design a Database Structure**:
    - Created three new tables (`items`, `customers`, `orders`) with at least two attributes each:
@@ -142,7 +142,7 @@ The following API commands were tested:
 
 ### Clone the repository:
 ```bash
-git clone https://github.com/[your-repo]/Assignment2.git
+git clone https://github.com/Miyabhai-Kirak/Assignment2
 docker compose up --build
 
 
