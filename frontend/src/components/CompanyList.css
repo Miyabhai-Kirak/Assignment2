@@ -1,0 +1,31 @@
+.company-table {
+    width: 70%; /* Reduce the overall width of the table */
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: auto;  /* Center the table */
+    margin-right: auto;
+    font-size: 14px; /* Reduce font size for a more compact look */
+}
+
+.company-table th, .company-table td {
+    border: 1px solid #ccc; /* Slightly darker border for more visibility */
+    padding: 6px 10px; /* Adjust padding to reduce cell size */
+    text-align: left;
+}
+
+.company-table th {
+    background-color: #e0e0e0; /* Slightly darker header for better contrast */
+    font-weight: bold;
+}
+
+.company-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+}
+
+.company-table tr:hover {
+    background-color: #e9e9e9; /* Lighter hover color for better contrast */
+}
+
+.company-table th, .company-table td {
+    padding: 50px 10px; /* Uniform smaller padding */
+}

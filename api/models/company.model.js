@@ -1,26 +1,27 @@
+
 module.exports = (sequelize, Sequelize) => {
-    const Phone = sequelize.define("phone", {
-        id: {
+    const Company = sequelize.define("company", {
+        company_id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        phone_type: {
+        company_name: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
         },
-        phone_number: {
+        company_address: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
         },
-        contactId: {
+        contact_id: {
             type: Sequelize.INTEGER,
             references: {
-                model: 'contacts',
+                model: 'contacts', // Reference to 'contacts' table
                 key: 'id',
             }
         }
     });
 
-    return Phone;
+    return Company;
 };

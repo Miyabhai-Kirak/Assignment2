@@ -1,138 +1,163 @@
-# README.md
+# Assignment 2 - Cloud-Based Web Application
 
-IMPORTANT: Once you've cloned this to your forked repository, ensure that you continuously update this document as you complete each task to demonstrate your ongoing progress.
+## Student Information
+- **Name**: Faisal Uddin Mohammed
+- **Student ID**: 21507105
+- **Course**: CSE5006
+- **Assignment**: Assignment 2
 
-Please include your shared repository link here:
+## Project Overview
+This project demonstrates the development of a cloud-based web application using various technologies, including:
+- **React** for front-end development
+- **Node.js** and **Express** for the back-end
+- **PostgreSQL** as the database
+- **Sequelize** ORM for database interaction
+- **Docker** for containerization
 
-Example:
-Choiru's shared repository: https://github.com/choiruzain-latrobe/Assignment2.git
+The project includes a REST API to perform CRUD operations on a contacts database, as well as a user interface for managing contacts and associated phone numbers. The application has been expanded to support additional tables and functionality, including managing companies.
 
+## Table of Contents
+- [System Setup](#system-setup)
+- [Project Structure](#project-structure)
+- [Tasks Completed](#tasks-completed)
+  - [Task 1: User Interface Changes](#task-1-user-interface-changes)
+  - [Task 2: API Command Demonstrations](#task-2-api-command-demonstrations)
+  - [Task 3: Database Modelling with Sequelize](#task-3-database-modelling-with-sequelize)
+  - [Task 4: Expanding the Existing Tables](#task-4-expanding-the-existing-tables)
+  - [Task 5: Front-End for Companies Table](#task-5-front-end-for-companies-table)
+  - [Task 6: Bonus Application](#task-6-bonus-application)
+- [Running the Application](#running-the-application)
+- [Screenshots](#screenshots)
+- [Conclusion](#conclusion)
 
-Make sure for **your case it is in Private**
-## Access Database
-1 **Plsql Cheat Sheet:**
-You can refer to the PostgreSQL cheat sheet [here](https://www.postgresqltutorial.com/postgresql-cheat-sheet/).
+## System Setup
+To run this project locally, make sure you have the following:
+- **Node.js** and **npm**
+- **Docker** and **Docker Compose**
+- **PostgreSQL** database (setup inside Docker container)
 
-2 **Know the Container ID:**
-To find out the container ID, execute the following command:
+### Steps to Run:
+1. Clone the repository:
    ```bash
-   docker ps
-    9958a3a534c9   testsystem-nginx           "/docker-entrypoint.…"   6 minutes ago   Up 6 minutes   0.0.0.0:80->80/tcp   testsystem-nginx-1
-    53121618baa4   testsystem-frontend        "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   3000/tcp             testsystem-frontend-1
-    c89e46ac94b0   testsystem-api             "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   5000/tcp             testsystem-api-1
-    9f4aea7cf538   postgres:15.3-alpine3.18   "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   5432/tcp             testsystem-db-1
-   ```
-3. Running the application
+   git clone https://github.com/Miyabhai-Kirak/FaisalUddin-21507105
+## Project Structure
 
-**docker compose command:**
-   ```bash
-   docker compose up --build
-   ```
+The main folders and files in this project include:
 
-4 **Access postgreSQL in the container:**
-Once you have the container ID, you can execute the container using the following command:
-You will see the example of running the PostgreSQL inside the container.
-   ```bash
-   docker exec -it testsystem-db-1 psql -U postgres
-   choiruzain@MacMarichoy TestSystem % docker exec -it testsystem-db-1 psql -U postgres                                       
-   psql (15.3)
-   Type "help" for help.
-   
-   postgres=# \dt
-             List of relations
-    Schema |   Name   | Type  |  Owner   
-   --------+----------+-------+----------
-    public | contacts | table | postgres
-    public | phones   | table | postgres
-   (2 rows)
-  
-    postgres=# select * from contacts;
-    id |  name  |         createdAt         |         updatedAt         
-   ----+--------+---------------------------+---------------------------
-     1 | Helmut | 2024-08-08 11:57:57.88+00 | 2024-08-08 11:57:57.88+00
-    (1 row)
-    postgres=# select * from phones;
-    id | phone_type |   number    | contactId |         createdAt          |         updatedAt          
-   ----+------------+-------------+-----------+----------------------------+----------------------------
-     1 | Work       | 081431      |         1 | 2024-08-08 11:59:04.386+00 | 2024-08-08 11:59:04.386+00
+- `/models`: Sequelize models for database tables (`contacts`, `phones`, `companies`).
+- `/controllers`: Handlers for CRUD operations (Create, Read, Update, Delete) for each table.
+- `/routes`: Defines API routes.
+- `/components`: React components for the front-end.
+- `App.js`: Main entry point for the React app.
 
+---
 
-postgres=# select * from contacts;
-   ```
-Replace `container_ID` with the actual ID of the container you want to execute.
+## Tasks Completed
 
-## Executing API
+### Task 1: User Interface Changes (10 Marks)
+- Changed the "Delete" button label to "Delete Contact" (2 Marks).
+- Changed the "Add" button label in the phone component to include the contact’s name (3 Marks).
+- Replaced the "Name" input with a drop-down menu with four categories (3 Marks).
+- In the `<tr>` element of the table, changed the label "Name" to "Phone Type" (2 Marks).
 
-### Contact API
+---
 
+### Task 2: API Command Demonstrations (8 Marks)
+The following API commands were tested:
 
-1. Add contacts API  (POST)
+1. **Show Contact** (`GET /contacts`): Displays a list of contacts (1 Mark).
+2. **Add Contact** (`POST /contacts`): Adds a new contact to the database (1 Mark).
+3. **Delete Contact** (`DELETE /contacts/:contactId`): Deletes a contact by ID (1 Mark).
+4. **Update Contact** (`PUT /contacts/:contactId`): Updates a contact’s details (1 Mark).
+5. **Show Phone** (`GET /contacts/:contactId/phones`): Retrieves phone numbers for a contact (1 Mark).
+6. **Add Phone** (`POST /contacts/:contactId/phones`): Adds a new phone number (1 Mark).
+7. **Delete Phone** (`DELETE /contacts/:contactId/phones/:phoneId`): Deletes a phone by ID (1 Mark).
+8. **Update Phone** (`PUT /contacts/:contactId/phones/:phoneId`): Updates a phone’s details (1 Mark).
+
+---
+
+### Task 3: Database Modelling with Sequelize (22 Marks)
+
+1. **Modify the `contacts` Table (5 Marks)**:
+   - Updated the `contacts` table to include `id`, `name`, and `address`.
+
+2. **Modify the `phones` Table (5 Marks)**:
+   - Updated the `phones` table to include `id`, `phone_type`, `phone_number`, and `contactId`.
+
+3. **Adjust the Front-End (4 Marks)**:
+   - Modified the front-end to reflect the updated backend structure, ensuring that the UI aligns with the changes made to the `contacts` and `phones` tables.
+
+4. **Test All APIs (8 Marks)**:
+   - Tested all APIs (POST, GET, PUT, DELETE) for the modified `contacts` and `phones` tables.
+
+---
+
+### Task 4: Expanding the Existing Tables (30 Marks)
+
+1. **Table Creation (18 Marks)**:
+   - Created a new `companies` table with the following attributes:
+     - `company_id`: Primary key for each company.
+     - `company_name`: Name of the company.
+     - `company_address`: Address of the company.
+     - `contact_id`: Foreign key referencing the `contacts` table.
+
+2. **API Creation (12 Marks)**:
+   - Developed the following API commands to manage the `companies` table:
+     - **Create Company** (`POST /companies`): Adds a new company.
+     - **Get Company** (`GET /companies/:companyId`): Retrieves a specific company by ID.
+     - **Update Company** (`PUT /companies/:companyId`): Updates details of a company.
+     - **Delete Company** (`DELETE /companies/:companyId`): Deletes a company by ID.
+
+---
+
+### Task 5: Front-End for Companies Table (30 Marks)
+
+- Created a React-based front-end interface for managing the `companies` table.
+- The front-end includes the ability to:
+  - Add a new company.
+  - Update company details.
+  - Delete a company.
+  - Display a list of companies.
+- All changes are persisted in the PostgreSQL database, with CRUD operations seamlessly integrated into the UI.
+
+---
+
+### Task 6: Bonus Application (20 Marks)
+
+1. **Design a Database Structure**:
+   - Created three new tables (`items`, `customers`, `orders`) with at least two attributes each:
+     - `items`: Includes `item_id`, `item_name`, and `item_price`.
+     - `customers`: Includes `customer_id`, `customer_name`, and `customer_email`.
+     - `orders`: Includes `order_id`, `order_date`, `customer_id`, and `item_id`.
+
+2. **API Implementation**:
+   - Demonstrated at least 12 APIs covering operations such as GET, UPDATE, CREATE, and POST for the three tables.
+
+3. **Data Persistence**:
+   - Ensured that the database accurately persists data across all CRUD operations.
+
+4. **Front-End/User Interface**:
+   - Created a front-end interface that accesses the three tables (`items`, `customers`, `orders`) and allows for updates across the system.
+## Running the Application
+
+### Clone the repository:
 ```bash
-http post http://localhost/api/contacts name="Choiru"
-        
-choiruzain@MacMarichoy-7 TestSystem % http post http://localhost/api/contacts name="Choiru"
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: keep-alive
-Content-Length: 102
-Content-Type: application/json; charset=utf-8
-Date: Thu, 08 Aug 2024 21:01:53 GMT
-ETag: W/"66-FmPYAaIkyQoroDwP2JsAZjWTAxs"
-Server: nginx/1.25.1
-Vary: Origin
-X-Powered-By: Express
-
-{
-"createdAt": "2024-08-08T21:01:53.017Z",
-"id": 1,
-"name": "Choiru",
-"updatedAt": "2024-08-08T21:01:53.017Z"
-}
-
-```
-2 Get contacts API  (GET)
-
-```bash
-http get http://localhost/api/contacts
+git clone https://github.com/[your-repo]/Assignment2.git
+docker compose up --build
 
 
-choiruzain@MacMarichoy-7 TestSystem % http get http://localhost/api/contacts
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:3000
-Connection: keep-alive
-Content-Length: 104
-Content-Type: application/json; charset=utf-8
-Date: Thu, 08 Aug 2024 21:04:58 GMT
-ETag: W/"68-V+4KuL2xahYt8YAkKG6rKdR7wHg"
-Server: nginx/1.25.1
-Vary: Origin
-X-Powered-By: Express
-
-[
-{
-"createdAt": "2024-08-08T21:01:53.017Z",
-"id": 1,
-"name": "Choiru",
-"updatedAt": "2024-08-08T21:01:53.017Z"
-}
-]
-
-
-```
-3. Show/create the API commmand to delete the contacts (DELETE)
-
-```bash
+![1](./screenshots/Screenshot%20(170).png)
+![2](./screenshots/Screenshot%20(171).png)
+![3](./screenshots/Screenshot%20(172).png)
+![4](./screenshots/Screenshot%20(178).png)
+![5](./screenshots/Screenshot%202024-10-19%20170920.png)
+![6](./screenshots/Screenshot%202024-10-19%20170937.png)
+![7](./screenshots/Screenshot%202024-10-19%20171152.png)
+![8](./screenshots/Screenshot%202024-10-19%20171204.png)
+![9](./screenshots/Screenshot%202024-10-19%20171217.png)
+![10](./screenshots/Screenshot%202024-10-19%20171240.png)
+![11](./screenshots/Screenshot%202024-10-19%20172104.png)
+![12](./screenshots/Screenshot%202024-10-19%20172656.png)
 
 
 
-
-
-```
-
-4. Show/create the API command to edit the contacts (PUT)
-```
-http get http://localhost/api/contacts/1/phones
-
-```
-
-### Phone API
